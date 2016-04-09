@@ -24,9 +24,9 @@ public class ClientImpl implements Client {
     private volatile AtomicInteger requestCounter;
     private final Socket s;
 
-    public ClientImpl() throws IOException {
-        logger.info("Client is started");
-        s = new Socket("localhost", 3129);
+    public ClientImpl(String host, int port) throws IOException {
+        logger.info("Client is started. Requests to " + host + ":" + port);
+        s = new Socket(host, port);
         objectOutputStream = new ObjectOutputStream(s.getOutputStream());
         ObjectInputStream objectInputStream = new ObjectInputStream(s.getInputStream());
         ansTaskReceiver = new AnsTaskReceiver(objectInputStream);
@@ -61,7 +61,7 @@ public class ClientImpl implements Client {
 
         AnsTask ansTask = ansTaskReceiver.get(requestId);
         ansTaskReceiver.remove(requestId);
-        logger.debug("Ans " + requestId +  " has " + ansTask.getStatus() + " status");
+        logger.debug("Ans " + requestId + " has " + ansTask.getStatus() + " status");
         if (ansTask.getStatus() == Status.ERROR) {
             throw new RemoteCallException(ansTask.getStatusInfo());
         }

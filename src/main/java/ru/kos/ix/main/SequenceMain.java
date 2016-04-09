@@ -8,7 +8,7 @@ import ru.kos.ix.client.ClientImpl;
  */
 public class SequenceMain {
     public static void main(String[] args) throws Exception {
-        Client client = new ClientImpl();
+        Client client = new ClientImpl("localhost", 3128);
         System.out.println(remoteCallSafe(client, "some", "toUpper", "my string"));
         System.out.println(remoteCallSafe(client, "unexist", "toUpper", "my string"));
         System.out.println(remoteCallSafe(client, "some", "plus", 1, 2));

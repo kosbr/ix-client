@@ -11,7 +11,7 @@ public class OneClientThread extends Thread {
     @Override
     public void run() {
         try {
-            Client client = new ClientImpl();
+            Client client = new ClientImpl("localhost", 3128);
 
             Runnable task1 = () -> {
                 System.out.println(remoteCallSafe(client, "some", "toUpper", "my string"));
