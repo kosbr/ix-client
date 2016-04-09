@@ -1,5 +1,7 @@
 package ru.kos.ix.dto;
 
+import com.google.common.base.MoreObjects;
+
 import java.io.Serializable;
 
 /**
@@ -44,5 +46,15 @@ public class Task implements Serializable {
 
     public void setArguments(Object[] arguments) {
         this.arguments = arguments;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("serviceName", serviceName)
+                .add("methodName", methodName)
+                .add("arguments", arguments)
+                .toString();
     }
 }
