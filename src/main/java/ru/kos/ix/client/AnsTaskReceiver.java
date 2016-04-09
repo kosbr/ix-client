@@ -26,7 +26,7 @@ public class AnsTaskReceiver extends Thread {
 
     @Override
     public void run() {
-        logger.info("Start AnsTaskReceiver");
+        logger.debug("Start AnsTaskReceiver");
 
             try {
                 while (true) {
@@ -42,7 +42,7 @@ public class AnsTaskReceiver extends Thread {
                     monitors.remove(ansTask.getId());
                 }
             } catch (SocketException e) {
-                logger.info("Stop AnsTaskReceiver. Socket is closed");
+                logger.warn("Stop AnsTaskReceiver. Socket is closed");
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
                 throw new RuntimeException();

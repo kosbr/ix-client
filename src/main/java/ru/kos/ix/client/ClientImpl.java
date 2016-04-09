@@ -61,7 +61,7 @@ public class ClientImpl implements Client {
 
         AnsTask ansTask = ansTaskReceiver.get(requestId);
         ansTaskReceiver.remove(requestId);
-        logger.info("Ans " + requestId +  " has " + ansTask.getStatus() + " status");
+        logger.debug("Ans " + requestId +  " has " + ansTask.getStatus() + " status");
         if (ansTask.getStatus() == Status.ERROR) {
             throw new RemoteCallException(ansTask.getStatusInfo());
         }
