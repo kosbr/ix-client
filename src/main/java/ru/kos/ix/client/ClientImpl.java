@@ -24,6 +24,12 @@ public class ClientImpl implements Client {
     private volatile AtomicInteger requestCounter;
     private final Socket s;
 
+    /**
+     * Creates client
+     * @param host Server host
+     * @param port Server port
+     * @throws IOException
+     */
     public ClientImpl(String host, int port) throws IOException {
         logger.info("Client is started. Requests to " + host + ":" + port);
         s = new Socket(host, port);

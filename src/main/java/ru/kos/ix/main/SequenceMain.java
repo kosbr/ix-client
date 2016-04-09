@@ -7,6 +7,14 @@ import ru.kos.ix.client.ClientImpl;
  * Created by Константин on 08.04.2016.
  */
 public class SequenceMain {
+
+    /**
+     * This is test main method. <br/>
+     * It creates one client, connects to server and sends successively different requests to server. <br/>
+     * Because of remoteCall method in {@link Client} is thread blocking, next request won't be sent before previous answer is waiting.
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         Client client = new ClientImpl("localhost", 3128);
         System.out.println(remoteCallSafe(client, "some", "toUpper", "my string"));

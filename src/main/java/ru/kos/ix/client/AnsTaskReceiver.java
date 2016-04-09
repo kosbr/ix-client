@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * Thread which is waiting for {@link AnsTask} object in inputStream and puts in into a storage. <br/>
+ * After saving income object in storage it calls notify method of corresponding monitor to allow other thread to get AnsTask from storage. <br/>
  * Created by Константин on 09.04.2016.
  */
 public class AnsTaskReceiver extends Thread {
@@ -50,14 +52,32 @@ public class AnsTaskReceiver extends Thread {
 
     }
 
+    /**
+     * Sets monitor, which's method notify will be called after corresponding to taskId answer comes <br/>
+     * It is possible to get nonnull ansewer using {@link #get(Integer)} method after notify call <br/>
+     * @param taskId
+     * @param monitor
+     */
     public void notifyWhenDataWillBeReady(Integer taskId, Object monitor) {
         monitors.put(taskId, monitor);
     }
 
+    /**
+     * Returns answer for taskId. <br/>
+     * If answer hasn't come yet, it returns null.
+     * @param taskId
+     * @return
+     */
     public AnsTask get(Integer taskId) {
         return ansTaskMap.get(taskId);
     }
 
+    /**
+     * Removes answer from storage. <br/>
+     * It is recommended to call it after success using of {@link #get(Integer)} method
+     * @param taskId
+     * @return
+     */
     public AnsTask remove(Integer taskId) {
         return ansTaskMap.remove(taskId);
     }
