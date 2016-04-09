@@ -1,7 +1,7 @@
 package ru.kos.ix.main;
 
 /**
- * Created by Константин on 09.04.2016.
+ * Created by РљРѕРЅСЃС‚Р°РЅС‚РёРЅ on 09.04.2016.
  */
 public class ManyConcurentClientsMain {
     public static void main(String[] args) {

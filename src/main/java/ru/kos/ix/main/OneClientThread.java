@@ -4,7 +4,7 @@ import ru.kos.ix.client.Client;
 import ru.kos.ix.client.ClientImpl;
 
 /**
- * Created by Константин on 09.04.2016.
+ * Created by РљРѕРЅСЃС‚Р°РЅС‚РёРЅ on 09.04.2016.
  */
 public class OneClientThread extends Thread {
 
