@@ -3,6 +3,7 @@ package ru.kos.ix.client;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.kos.ix.dto.AnsTask;
+import ru.kos.ix.dto.Status;
 import ru.kos.ix.dto.Task;
 
 import java.io.IOException;
@@ -60,8 +61,10 @@ public class ClientImpl implements Client {
 
         AnsTask ansTask = ansTaskReceiver.get(requestId);
         ansTaskReceiver.remove(requestId);
-        logger.info("Ready to return ans: " + ansTask);
-        //todo statuses
+        logger.info("Ans " + requestId +  " has " + ansTask.getStatus() + " status");
+        if (ansTask.getStatus() == Status.ERROR) {
+            throw new RemoteCallException(ansTask.getStatusInfo());
+        }
         return ansTask.getResult();
     }
 
