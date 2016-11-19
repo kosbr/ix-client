@@ -7,11 +7,11 @@ import java.io.IOException;
  */
 public class RemoteCallException extends IOException {
 
-    public RemoteCallException(String message) {
+    public RemoteCallException(final String message) {
         super(message);
     }
 
-    public RemoteCallException(Throwable cause) {
+    public RemoteCallException(final Throwable cause) {
         super(cause);
     }
 }

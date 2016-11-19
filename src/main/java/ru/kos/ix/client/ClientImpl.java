@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ClientImpl implements Client {
 
-    private static final Logger logger = LogManager.getLogger(ClientImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger(ClientImpl.class);
 
     private final ObjectOutputStream objectOutputStream;
     private final AnsTaskReceiver ansTaskReceiver;
@@ -30,8 +30,8 @@ public class ClientImpl implements Client {
      * @param port Server port
      * @throws IOException
      */
-    public ClientImpl(String host, int port) throws IOException {
-        logger.info("Client is started. Requests to " + host + ":" + port);
+    public ClientImpl(final String host, final int port) throws IOException {
+        LOGGER.info("Client is started. Requests to " + host + ":" + port);
         s = new Socket(host, port);
         objectOutputStream = new ObjectOutputStream(s.getOutputStream());
         ObjectInputStream objectInputStream = new ObjectInputStream(s.getInputStream());
@@ -41,7 +41,8 @@ public class ClientImpl implements Client {
     }
 
     @Override
-    public Object remoteCall(String serviceName, String methodName, Object ... args) throws IOException, InterruptedException {
+    public Object remoteCall(final String serviceName, final String methodName, final Object ... args)
+            throws IOException, InterruptedException {
         int requestId = requestCounter.incrementAndGet();
         Task task = new Task();
         task.setArguments(args);
@@ -53,21 +54,21 @@ public class ClientImpl implements Client {
         ansTaskReceiver.notifyWhenDataWillBeReady(requestId, monitor);
 
         synchronized (this) {
-            logger.info("Send task: " + task);
+            LOGGER.info("Send task: " + task);
             objectOutputStream.writeObject(task);
             objectOutputStream.flush();
         }
 
         synchronized (monitor) {
             if (ansTaskReceiver.get(requestId) == null) {
-                logger.info("Waiting for answer: " + requestId);
+                LOGGER.info("Waiting for answer: " + requestId);
                 monitor.wait();
             }
         }
 
         AnsTask ansTask = ansTaskReceiver.get(requestId);
         ansTaskReceiver.remove(requestId);
-        logger.debug("Ans " + requestId + " has " + ansTask.getStatus() + " status");
+        LOGGER.debug("Ans " + requestId + " has " + ansTask.getStatus() + " status");
         if (ansTask.getStatus() == Status.ERROR) {
             throw new RemoteCallException(ansTask.getStatusInfo());
         }

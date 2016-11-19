@@ -11,29 +11,30 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Thread which is waiting for {@link AnsTask} object in inputStream and puts in into a storage. <br/>
- * After saving income object in storage it calls notify method of corresponding monitor to allow other thread to get AnsTask from storage. <br/>
+ * After saving income object in storage it calls notify method of corresponding monitor to allow other
+ * thread to get AnsTask from storage. <br/>
  * Created by Константин on 09.04.2016.
  */
 public class AnsTaskReceiver extends Thread {
 
-    private static final Logger logger = LogManager.getLogger(AnsTaskReceiver.class);
+    private static final Logger LOGGER = LogManager.getLogger(AnsTaskReceiver.class);
 
     private Map<Integer, AnsTask> ansTaskMap = new ConcurrentHashMap<>();
     private Map<Integer, Object> monitors = new ConcurrentHashMap<>();
     private ObjectInputStream objectInputStream;
 
-    public AnsTaskReceiver(ObjectInputStream objectInputStream) {
+    public AnsTaskReceiver(final ObjectInputStream objectInputStream) {
         this.objectInputStream = objectInputStream;
     }
 
     @Override
     public void run() {
-        logger.debug("Start AnsTaskReceiver");
+        LOGGER.debug("Start AnsTaskReceiver");
 
             try {
                 while (true) {
                     AnsTask ansTask = (AnsTask) objectInputStream.readObject();
-                    logger.info("Ans has come: " + ansTask);
+                    LOGGER.info("Ans has come: " + ansTask);
                     ansTaskMap.put(ansTask.getId(), ansTask);
                     Object monitor = monitors.get(ansTask.getId());
                     if (monitor != null) {
@@ -44,9 +45,9 @@ public class AnsTaskReceiver extends Thread {
                     monitors.remove(ansTask.getId());
                 }
             } catch (SocketException e) {
-                logger.warn("Stop AnsTaskReceiver. Socket is closed");
+                LOGGER.warn("Stop AnsTaskReceiver. Socket is closed");
             } catch (Exception e) {
-                logger.error(e.getMessage(), e);
+                LOGGER.error(e.getMessage(), e);
                 throw new RuntimeException();
             }
 
@@ -58,7 +59,7 @@ public class AnsTaskReceiver extends Thread {
      * @param taskId
      * @param monitor
      */
-    public void notifyWhenDataWillBeReady(Integer taskId, Object monitor) {
+    public void notifyWhenDataWillBeReady(final Integer taskId, final Object monitor) {
         monitors.put(taskId, monitor);
     }
 
@@ -68,7 +69,7 @@ public class AnsTaskReceiver extends Thread {
      * @param taskId
      * @return
      */
-    public AnsTask get(Integer taskId) {
+    public AnsTask get(final Integer taskId) {
         return ansTaskMap.get(taskId);
     }
 
@@ -78,7 +79,7 @@ public class AnsTaskReceiver extends Thread {
      * @param taskId
      * @return
      */
-    public AnsTask remove(Integer taskId) {
+    public AnsTask remove(final Integer taskId) {
         return ansTaskMap.remove(taskId);
     }
 }

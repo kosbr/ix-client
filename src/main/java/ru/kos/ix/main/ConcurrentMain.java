@@ -4,7 +4,11 @@ package ru.kos.ix.main;
 /**
  * Created by Константин on 09.04.2016.
  */
-public class ConcurentMain {
+public final class ConcurrentMain {
+
+    private ConcurrentMain() {
+    }
+
     /**
      * This is test main method. <br/>
      * It creates one client, connects to server and sends in parallel different requests to server. <br/>
@@ -13,7 +17,7 @@ public class ConcurentMain {
      * @param args
      * @throws Exception
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(final String[] args) throws Exception {
         OneClientThread oneClientThread = new OneClientThread();
         oneClientThread.start();
     }

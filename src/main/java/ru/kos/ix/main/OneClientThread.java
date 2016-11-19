@@ -8,10 +8,13 @@ import ru.kos.ix.client.ClientImpl;
  */
 public class OneClientThread extends Thread {
 
+    private static final int PORT = 3128;
+    private static final String HOST = "localhost";
+
     @Override
     public void run() {
         try {
-            Client client = new ClientImpl("localhost", 3128);
+            Client client = new ClientImpl(HOST, PORT);
 
             Runnable task1 = () -> {
                 System.out.println(remoteCallSafe(client, "some", "toUpper", "my string"));
@@ -84,7 +87,8 @@ public class OneClientThread extends Thread {
         }
     }
 
-    public static Object remoteCallSafe(Client client, String serviceName, String methodName, Object ... args) {
+    public static Object remoteCallSafe(final Client client, final String serviceName,
+                                        final String methodName, final Object ... args) {
         try {
             return client.remoteCall(serviceName, methodName, args);
         } catch (Exception e) {
