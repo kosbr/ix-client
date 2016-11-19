@@ -1,4 +1,4 @@
-package ru.kos.ix.main;
+package com.github.kosbr.ix.main;
 
 
 /**

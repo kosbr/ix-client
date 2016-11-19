@@ -1,7 +1,7 @@
-package ru.kos.ix.main;
+package com.github.kosbr.ix.main;
 
-import ru.kos.ix.client.Client;
-import ru.kos.ix.client.ClientImpl;
+import com.github.kosbr.ix.client.Client;
+import com.github.kosbr.ix.client.ClientImpl;
 
 /**
  * Created by Константин on 08.04.2016.

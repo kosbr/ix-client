@@ -1,10 +1,10 @@
-package ru.kos.ix.client;
+package com.github.kosbr.ix.client;
 
+import com.github.kosbr.ix.dto.AnsTask;
+import com.github.kosbr.ix.dto.Status;
+import com.github.kosbr.ix.dto.Task;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.kos.ix.dto.AnsTask;
-import ru.kos.ix.dto.Status;
-import ru.kos.ix.dto.Task;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

@@ -1,4 +1,4 @@
-package ru.kos.ix.main;
+package com.github.kosbr.ix.main;
 
 /**
  * Created by Константин on 09.04.2016.

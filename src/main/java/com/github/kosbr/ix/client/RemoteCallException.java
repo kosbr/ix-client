@@ -1,4 +1,4 @@
-package ru.kos.ix.client;
+package com.github.kosbr.ix.client;
 
 import java.io.IOException;
 
