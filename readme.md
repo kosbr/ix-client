@@ -1,8 +1,9 @@
 # Multithreading training task
 This is the client solution of training task that is described below.
 
-The client part description of the solution is here. 
-Server implementation and description is [here][server]
+* The client part description of the solution is [here][desc]. 
+* How to launch? Instruction is [here][launch].
+* Server implementation and description is [here][server]
 
 ## Task description
 Create client and server which interact with the specific protocol. 
@@ -94,3 +95,5 @@ A server must return result with parameters:
 * answer = 'HELLO'
  
 [server]: https://github.com/kosbr/ix-server 
+[desc]: https://github.com/kosbr/ix-client/blob/master/description.md
+[launch]: https://github.com/kosbr/ix-client/blob/master/launch.md
