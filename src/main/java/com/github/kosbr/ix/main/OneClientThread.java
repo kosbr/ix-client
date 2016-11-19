@@ -4,7 +4,7 @@ import com.github.kosbr.ix.client.Client;
 import com.github.kosbr.ix.client.ClientImpl;
 
 /**
- * Created by Константин on 09.04.2016.
+ * Created by kosbr on 09.04.2016.
  */
 public class OneClientThread extends Thread {
 

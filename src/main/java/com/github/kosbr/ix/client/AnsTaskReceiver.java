@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Thread which is waiting for {@link AnsTask} object in inputStream and puts in into a storage. <br/>
  * After saving income object in storage it calls notify method of corresponding monitor to allow other
  * thread to get AnsTask from storage. <br/>
- * Created by Константин on 09.04.2016.
+ * Created by kosbr on 09.04.2016.
  */
 public class AnsTaskReceiver extends Thread {
 

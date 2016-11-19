@@ -13,7 +13,7 @@ import java.net.Socket;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Created by Константин on 09.04.2016.
+ * Created by kosbr on 09.04.2016.
  */
 public class ClientImpl implements Client {
 

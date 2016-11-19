@@ -3,7 +3,7 @@ package com.github.kosbr.ix.client;
 import java.io.IOException;
 
 /**
- * Created by Константин on 09.04.2016.
+ * Created by kosbr on 09.04.2016.
  */
 public class RemoteCallException extends IOException {
 
