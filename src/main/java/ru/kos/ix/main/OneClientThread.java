@@ -9,7 +9,7 @@ import ru.kos.ix.client.ClientImpl;
 public class OneClientThread extends Thread {
 
     private static final int PORT = 3128;
-    private static final String HOST = "localhost";
+    private static final String HOST = "127.0.1.1";
 
     @Override
     public void run() {
